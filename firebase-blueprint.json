@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with role selection and account details",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": {
+          "type": "string",
+          "enum": ["health_personnel", "business_operator", "general_public"]
+        },
+        "roleThai": { "type": "string" },
+        "organization": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastLoginAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "role"]
+    },
+    "AuditReport": {
+      "title": "AuditReport",
+      "description": "Food label audit assessment report comparing physical label vs FDA database",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userRole": { "type": "string" },
+        "productName": { "type": "string" },
+        "fdaNumber": { "type": "string" },
+        "manufacturer": { "type": "string" },
+        "complianceScore": { "type": "number" },
+        "complianceLevel": { "type": "string" },
+        "status": { "type": "string" },
+        "issuesCount": { "type": "number" },
+        "findings": { "type": "array" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "fdaNumber", "complianceScore"]
+    },
+    "GlobalStats": {
+      "title": "GlobalStats",
+      "description": "Summary statistics of users and label checks",
+      "type": "object",
+      "properties": {
+        "healthPersonnelCount": { "type": "number" },
+        "businessOperatorCount": { "type": "number" },
+        "generalPublicCount": { "type": "number" },
+        "totalAudits": { "type": "number" },
+        "passedAudits": { "type": "number" },
+        "failedAudits": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Individual user role and profile document"
+    },
+    "/auditReports/{reportId}": {
+      "schema": "AuditReport",
+      "description": "Historical audit assessment reports"
+    },
+    "/stats/summary": {
+      "schema": "GlobalStats",
+      "description": "Aggregated user statistics and audit metrics"
+    }
+  }
+}

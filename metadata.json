@@ -1,0 +1,6 @@
+{
+  "name": "LabelCheckr",
+  "description": "ระบบตรวจสอบมาตรฐานฉลากอาหาร อย. เปรียบเทียบข้อมูลจริงกับฐานข้อมูล อย. ตรวจสอบฉลากโภชนาการ GDA และวิเคราะห์ความถูกต้องตามกฎหมาย",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
